@@ -1,0 +1,109 @@
+/* Page Title and Subtitle */
+.pgTitle {
+  margin-top: 1vh;
+  text-align: center;
+  text-shadow: 2px 2px 5px black;
+  color: white;
+}
+h1 {
+  padding: 0;
+  margin: 0;
+  font-size: 50px;
+  font-weight: 600;
+}
+h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
+  font-weight: 300;
+  text-shadow: 1px 1px 2xp black;
+}
+
+/* Search Box */
+.floatBox {
+  background-color: rgba(122, 5, 118, 0.8);
+  margin-top: 3vh;
+  margin-left: 20vh;
+  margin-right: 20vh;
+  padding-top: 3vh;
+  padding-bottom: 5vh;
+  padding-left: 5vh;
+  padding-right: 5vh;
+  box-shadow: 2px 2px 4px black;
+}
+.instructions {
+  color: white;
+  font-size: 20px;
+}
+
+/* drop Down */
+.dropDown {
+  margin-bottom: 3vh;
+}
+
+/* slider */
+.calSlider {
+  height: 10px;
+  margin-bottom: 40px;
+}
+
+mat-slider {
+  width: 400px;
+  margin-bottom: 2vh;
+}
+
+/* checkboxes */
+.checkBoxCont {
+  padding-top: 4vh;
+  padding-bottom: 3vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: row;
+}
+.h1label {
+  color: white;
+}
+
+.label {
+  color: white;
+  font-size: 12px;
+}
+
+/*inputs */
+.search {
+  padding-top: 2vh;
+  color: black;
+}
+
+button {
+  width: 10vw;
+  height: 5vh;
+  background-color: black;
+  color: white;
+  align-items: center;
+  border: none;
+}
+
+button:hover {
+  background-color: #026300;
+  font-weight: 600;
+}
+
+/* recipe Filtered List */
+.placeholder {
+  padding-top: 12vh;
+  padding-bottom: 12vh;
+}
+.spacer {
+  margin-top: 20vh;
+  text-align: center;
+  border: 2px solid black;
+}
+
+/* preview Section */
+
+.image {
+  width: 12vw;
+  height: auto;
+}

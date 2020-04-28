@@ -1,0 +1,31 @@
+<!--general list  *ngIf=!searchResults -->
+
+<main>
+  <section *ngIf="!searchResults">
+    <h1>Recipe List</h1>
+
+    <div class="container">
+      <ul *ngFor="let item of recipes">
+        <div class="title">{{ item.hits.recipe.label }}</div>
+        <div a class="url" ng-href="url">{{ item.hits.recipe.url }}</div>
+        <img [src]="item.hits.recipe.image" />
+        <button class="fav">Add to Fav</button>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!--Search Specific *ngIf=searchResults-->
+<!--add more details-->
+<main>
+  <section *ngIf="searchResults">
+    <div class="container">
+      <ul>
+        <div class="title">{{ recipe.data.label }}</div>
+        <div a class="url" ng-href="url">{{ recipe.data.url }}</div>
+        <img [src]="recipe.data.image" />
+        <button class="fav" (click)="addToFav()">Add to Fav</button>
+      </ul>
+    </div>
+  </section>
+</main>

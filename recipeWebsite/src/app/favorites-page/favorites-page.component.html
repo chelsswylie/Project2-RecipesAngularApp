@@ -1,0 +1,31 @@
+<main>
+  <section>
+    <h1>My Favorite Recipes</h1>
+    <p>Your own digital cookbook!</p>
+    <form action="">
+      <input type="text" name="filter" placeholder="Filter your favorites" />
+    </form>
+    <ol *ngFor="let item of myFavorites; index as i">
+      <li>
+        <!-- item is a placeholder of myFavorites -->
+        <div class="item_container">
+          <!-- <button
+              *ngIf="!item.completed"
+              class="complete_btn"
+              (click)="completedTask(item)"
+            >
+              Complete
+            </button> -->
+          <!-- <p class="task" [ngClass]="{ completed: item.completed }">
+              {{ item.task }}
+            </p> -->
+          <!-- <button (click)="removeTask(item)" class="del">X</button> -->
+        </div>
+      </li>
+    </ol>
+    <!-- <form action="">
+        <input type="text" name="todo" placeholder="Add Your to-do" #newTask />
+        <button class="add" (click)="addTask(newTask.value)">Add</button>
+      </form> -->
+  </section>
+</main>

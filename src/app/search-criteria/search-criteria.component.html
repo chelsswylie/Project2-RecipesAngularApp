@@ -1,0 +1,105 @@
+<main>
+  <div class="pgTitle">
+    <h1>Search</h1>
+    <h4>Find Your Favorite Recipes Here</h4>
+  </div>
+
+  <!--Search Criteria, filter through json and create list in the "preview" section-->
+  <div class="floatBox">
+    <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
+      <p class="instructions">Enter your Preferences Below:</p>
+
+      <!--Input Drop Down-->
+      <div class="dropDown">
+        <p class="h1label">Protein</p>
+        <select name="primary" ngModel>
+          <!-- do i need to create an interface?
+          **** <option
+            *ngFor="let results of searchResults; index as i"
+            [value]="result.recipe"
+            >{{ results.recipe }}
+          </option> -->
+          <option>Chicken</option>
+          <option>Turkey</option>
+          <option> Beef</option>
+          <option>Fish</option>
+          <option>Lamb</option>
+          <option>Eggs</option>
+          <option>None</option>
+        </select>
+      </div>
+
+      <!-- Calorie slider -->
+      <div class="calSlider">
+        <label class="h1label">Calories</label>
+        <mat-slider
+          thumbLabel
+          name="calSlider"
+          value="0"
+          tickInterval="25"
+          min="150"
+          max="1500"
+          [(ngModel)]="slider"
+        ></mat-slider>
+      </div>
+
+      <!--Checkboxes -->
+      <div class="checkBoxCont">
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="dairy-free" ngModel />
+          Dairy Free
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="gluten-free" ngModel />
+          Gluten Free
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="vegetarian" ngModel />
+          Vegetarian
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="vegan" ngModel />
+          Vegan
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="egg-free" ngModel />
+          Egg Free
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="tree-nut-free" ngModel />
+          TreeNut Free
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="peanut-free" ngModel />
+          Peanut Free
+        </p>
+      </div>
+
+      <!--Search Button-->
+      <div>
+        <button>Search</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="placeholder">View Recipes Here</div>
+
+  <!--Preview Section for Recipes-->
+  <div *ngIf="searchResults">
+    <div class="spacer" *ngFor="let results of searchResults; index as i">
+      <img
+        class="image"
+        src="{{ results.recipe.image }}"
+        alt="image not available"
+      />
+      <div class="info">
+        <div class="calories">{{ results.recipe.calories }}</div>
+        <div class="serving">{{ results.recipe.serving }}</div>
+        <div class="dietary">{{ results.recipe.dietLabels }}</div>
+      </div>
+      <button (click)="handleRoute(results.recipe)">
+        View More
+      </button>
+    </div>
+  </div>
+</main>

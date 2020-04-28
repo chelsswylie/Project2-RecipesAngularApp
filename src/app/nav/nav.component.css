@@ -1,0 +1,31 @@
+.parentCont {
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  width: 100vw;
+  height: auto;
+  z-index: 2;
+  color: white;
+}
+
+.backgroundCont {
+  width: 100vw;
+  height: auto;
+  /* background-image: url("./background2.png"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  position: absolute;
+}
+a {
+  font-weight: 300;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  font-size: 30px;
+}

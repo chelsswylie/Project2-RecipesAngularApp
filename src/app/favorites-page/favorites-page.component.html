@@ -1,0 +1,26 @@
+<head>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<main>
+  <section>
+    <div class="top">
+      <h1>My Favorite Recipes</h1>
+      <p class="subheader">Your own digital cookbook!</p>
+    </div>
+    <div class="row">
+      <div class="column" *ngFor="let item of myFavorites; index as i">
+        <!-- ngIf possibly to say "condition; then method1 else method2 to display info" -->
+        <p>This is a line</p>
+        <div class="item_container">
+          <div>{{ item.recipe.title }}</div>
+          <button (click)="removeRecipe(item)" class="del">
+            X
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
