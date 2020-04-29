@@ -6,56 +6,109 @@
 
   <!--Search Criteria, filter through json and create list in the "preview" section-->
   <div class="floatBox">
-    <form>
+    <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
       <p class="instructions">Enter your Preferences Below:</p>
-      <div class="range">
-        <p class="calorieLabel">Calories</p>
-        <input
-          type="range"
-          min="200"
-          max="1000"
-          value="500"
-          class="calSlider"
-          id="calories"
-          placeholder="Choose Here"
-        />
+
+      <!--Input Drop Down-->
+      <div class="dropDown">
+        <p class="h1label">Protein</p>
+        <select name="primary" ngModel>
+          <!-- do i need to create an interface?
+          **** <option
+            *ngFor="let results of searchResults; index as i"
+            [value]="result.recipe"
+            >{{ results.recipe }}
+          </option> -->
+          <option>Chicken</option>
+          <option>Turkey</option>
+          <option> Beef</option>
+          <option>Fish</option>
+          <option>Pork</option>
+          <option>Lamb</option>
+          <option>Eggs</option>
+          <option>Pasta</option>
+          <option>None</option>
+        </select>
       </div>
-      <p>Dairy Free</p>
-      <input type="checkbox" id="searchBox" placeholder="Dairy Free" />
-      <input
-        [(ngModel)]="filterText"
-        type="text"
-        id="searchBox"
-        placeholder="Looking for a specific Recipe?"
-      />
-      <!-- <p class="search">Search by:</p>
-      <div class="buttonBox">
-        <button type="checkbox" id="calories">
-          <a routerLink="Favorite" class="buttonLink"> Calorie Information</a>
-        </button>
-        <button type="checkbox" id="cantEat">
-          <a routerLink="Favorite" class="buttonLink">Dietary Restrictions</a>
-        </button> -->
-      <button type="radio" id="search">
-        <a routerLink="recipeList" class="buttonLink">search</a>
-      </button>
-      <!--</div> -->
+
+      <!-- Calorie slider -->
+      <div class="calSlider">
+        <label class="h1label">Calories:</label>
+        <mat-slider
+          thumbLabel
+          name="calSlider"
+          value="0"
+          tickInterval="25"
+          min="150"
+          max="1500"
+          [(ngModel)]="slider"
+        ></mat-slider>
+      </div>
+
+      <!--Checkboxes -->
+      <div class="checkBoxCont">
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="dairy-free" ngModel />
+          Dairy Free
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="gluten-free" ngModel />
+          Gluten Free
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="vegetarian" ngModel />
+          Vegetarian
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="vegan" ngModel />
+          Vegan
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="egg-free" ngModel />
+          Egg Free
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="tree-nut-free" ngModel />
+          TreeNut Free
+        </p>
+        <p class="label">
+          <input type="checkbox" id="searchBox" name="peanut-free" ngModel />
+          Peanut Free
+        </p>
+      </div>
+
+      <!--Search Button-->
+      <div>
+        <button>Search</button>
+      </div>
     </form>
   </div>
 
-  <!--Pre Built Lists Links -> To go To outside site-->
-  <div class="preBuilt">
-    <div class="preBox"><a href="#" id="preListLink">Comfort Food</a></div>
-    <div class="preBox"><a href="#" id="preListLink">15 minute Meals</a></div>
-    <div class="preBox">
-      <a href="#" id="preListLink">Delicious Desserts</a>
-    </div>
-    <div class="preBox"><a href="#" id="preListLink">Holiday Classics</a></div>
-  </div>
   <!--Preview Section for Recipes-->
-  <div class="spacer">
-    <!-- addInput - ngIf=hasSearchResults - <searchResult-app> </> -->
-    Search Results Here
-    <!-- Show when search results come back-->
+  <div *ngIf="searchResults">
+    <div class="recipeCont">
+      <div class="forCont" *ngFor="let results of searchResults; index as i">
+        <div class="imaCont">
+          <img
+            class="image"
+            src="{{ results.recipe.image }}"
+            alt="image not available"
+          />
+        </div>
+
+        <div class="info">
+          <div class="calories">
+            Cals Per Meal: {{ results.recipe.calories }}
+          </div>
+          <div class="serving">
+            Servings Per Meal: {{ results.recipe.yield }}
+          </div>
+          <div class="dietary">Highlights: {{ results.recipe.dietLabels }}</div>
+        </div>
+        <button (click)="handleRoute(results.recipe)">
+          View More
+        </button>
+      </div>
+    </div>
   </div>
 </main>
