@@ -17,8 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
-    path: ' ',
-    redirectTo: 'searchCriteria',
+    path: '',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
