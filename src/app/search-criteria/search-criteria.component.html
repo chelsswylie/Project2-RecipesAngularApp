@@ -23,15 +23,17 @@
           <option>Turkey</option>
           <option> Beef</option>
           <option>Fish</option>
+          <option>Pork</option>
           <option>Lamb</option>
           <option>Eggs</option>
+          <option>Pasta</option>
           <option>None</option>
         </select>
       </div>
 
       <!-- Calorie slider -->
       <div class="calSlider">
-        <label class="h1label">Calories</label>
+        <label class="h1label">Calories:</label>
         <mat-slider
           thumbLabel
           name="calSlider"
@@ -82,24 +84,32 @@
     </form>
   </div>
 
-  <div class="placeholder">View Recipes Here</div>
-
   <!--Preview Section for Recipes-->
   <div *ngIf="searchResults">
-    <div class="spacer" *ngFor="let results of searchResults; index as i">
-      <img
-        class="image"
-        src="{{ results.recipe.image }}"
-        alt="image not available"
-      />
-      <div class="info">
-        <div class="calories">{{ results.recipe.calories }}</div>
-        <div class="serving">{{ results.recipe.serving }}</div>
-        <div class="dietary">{{ results.recipe.dietLabels }}</div>
+    <div class="recipeCont">
+      <div class="forCont" *ngFor="let results of searchResults; index as i">
+        <div class="imaCont">
+          <img
+            class="image"
+            src="{{ results.recipe.image }}"
+            alt="image not available"
+          />
+        </div>
+
+        <div class="info">
+          <div class="lable">{{ results.recipe.label }}</div>
+          <div class="calories">
+            Cals Per Meal: {{ results.recipe.calories }}
+          </div>
+          <div class="serving">
+            Servings Per Meal: {{ results.recipe.yield }}
+          </div>
+          <div class="dietary">Highlights: {{ results.recipe.dietLabels }}</div>
+        </div>
+        <button (click)="handleRoute(results.recipe)">
+          View More
+        </button>
       </div>
-      <button (click)="handleRoute(results.recipe)">
-        View More
-      </button>
     </div>
   </div>
 </main>
