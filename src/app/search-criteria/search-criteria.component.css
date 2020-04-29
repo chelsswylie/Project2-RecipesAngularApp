@@ -6,14 +6,14 @@
   color: white;
 }
 h1 {
-  padding: 0;
-  margin: 0;
+  padding: 2vh;
+  margin-top: 2vh;
   font-size: 50px;
   font-weight: 600;
 }
 h4 {
   margin: 0;
-  padding: 0;
+  padding: 1vh;
   font-size: 25px;
   font-weight: 300;
   text-shadow: 1px 1px 2xp black;
@@ -21,7 +21,7 @@ h4 {
 
 /* Search Box */
 .floatBox {
-  background-color: rgba(122, 5, 118, 0.8);
+  background-color: rgba(122, 3, 118, 0.8);
   margin-top: 3vh;
   margin-left: 20vh;
   margin-right: 20vh;
@@ -38,18 +38,24 @@ h4 {
 
 /* drop Down */
 .dropDown {
-  margin-bottom: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 1vh;
 }
 
 /* slider */
 .calSlider {
   height: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 3vh;
+}
+
+.h1label {
+  padding-right: 10px;
 }
 
 mat-slider {
   width: 400px;
   margin-bottom: 2vh;
+  margin-top: 2vh;
 }
 
 /* checkboxes */
@@ -91,19 +97,39 @@ button:hover {
 }
 
 /* recipe Filtered List */
-.placeholder {
-  padding-top: 12vh;
-  padding-bottom: 12vh;
+
+.recipeCont {
+  justify-content: center;
+  align-items: row;
+  margin-left: 30vh;
 }
-.spacer {
-  margin-top: 20vh;
-  text-align: center;
-  border: 2px solid black;
+.forCont {
+  width: 500px;
+  height: 200px;
+  margin-top: 4vh;
+  box-shadow: 4px 4px 9px black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
+.info {
+  font-weight: 500;
+}
 /* preview Section */
 
 .image {
   width: 12vw;
   height: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .checkBoxCont {
+    padding-top: 5vh;
+  }
+
+  .recipeCont {
+    margin-left: 10vh;
+  }
 }
