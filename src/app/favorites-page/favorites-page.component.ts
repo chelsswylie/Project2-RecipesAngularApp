@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchCService } from '../search-c.service';
+import { reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-favorites-page',
@@ -12,16 +13,6 @@ export class FavoritesPageComponent implements OnInit {
 
   myFavorites: any = [];
 
-  // Need to figure out how to incorporate the below with a "save as favorites" button on another component
-  // Routing link?
-  // addRecipe = (newRecipe) => {
-  //   this.myFavorites.push({
-  //     Title: newRecipe,
-  //     Calories: newRecipe,
-  //     Dietary: newRecipe,
-  //     link: newRecipe,
-  //   });
-  // };
   // The below occurs within this component by using the filter function. Need to incorporate a button on favoritesP component to remove
   removeRecipe = (idx) => {
     console.log(idx);
@@ -32,13 +23,18 @@ export class FavoritesPageComponent implements OnInit {
   ngOnInit() {
     this.SearchCService.getSearchResults().subscribe((res) => {
       const {
-        data: { calories, label, healthLabels, url, ingredients },
+        data: { calories, label, image, source },
       } = res;
       this.myFavorites.push({
         Title: label,
         Calories: calories,
-        Health: 'healthLabels',
         Servings: res.data.yield,
+        Image: image,
+        Warning: res.data.cautions,
+        Diet: res.data.dietLabels,
+        Health: res.data.healthLabels,
+        Sauce: source,
+        Link: res.data.url,
       });
       console.log('fav data', res);
     });

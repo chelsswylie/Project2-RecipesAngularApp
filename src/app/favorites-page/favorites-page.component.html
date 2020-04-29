@@ -1,52 +1,37 @@
-<head>
-  <!-- <link
-    href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap"
-    rel="stylesheet"
-  /> -->
-</head>
 <main>
   <section>
     <div class="top">
       <h1>My Favorite Recipes</h1>
-      <p class="subheader">Your own digital cookbook!</p>
+      <p class="subheader">Your own digital cookbook</p>
     </div>
-    <div class="row">
-      <div class="highlightRecipe">
-        <div class="column" *ngFor="let item of myFavorites; index as i">
-          <!-- ngIf possibly to say "condition; then method1 else method2 to display info" -->
-          <div class="item_container">
-            <div class="one">{{ item.Title }}</div>
-            <div class="two">Total Calories:{{ item.Calories }}</div>
-            <div class="three">{{ item.Health }}</div>
-            <div class="four">Servings:{{ item.Servings }}</div>
-            <button (click)="removeRecipe(i)" class="del">
-              X
-            </button>
-          </div>
+    <div class="floatBox" *ngFor="let item of myFavorites; index as i">
+      <div class="one">
+        <b>{{ item.Title }}</b>
+      </div>
+      <div class="two">Total Calories: {{ item.Calories }}</div>
+      <div class="three">Servings: {{ item.Servings }}</div>
+      <div class="five">
+        <div class="sauceName">
+          <b>A {{ item.Sauce }} Recipe</b>
+        </div>
+        <div class="linky">
+          <a href="{{ item.Link }}" alt="Link not shown">See Recipe Here</a>
         </div>
       </div>
-    </div>
-    <div class="column">
-      <p class="textOne">
-        White Chicken Chili<br />
-        Total Calories: 1000
-      </p>
-      <div class="item_container"></div>
-    </div>
-    <div class="column">
-      <div class="item_container"></div>
-    </div>
-    <div class="column">
-      <div class="item_container"></div>
-    </div>
-    <div class="column">
-      <div class="item_container"></div>
-    </div>
-    <div class="column">
-      <div class="item_container"></div>
-    </div>
-    <div class="column">
-      <div class="item_container"></div>
+      <div class="four">
+        <div class="restrict">
+          This recipe may include items in your dietary restrictions
+        </div>
+        <b
+          >{{ item.Warning }}
+          {{ item.Diet }}
+          {{ item.Health }}</b
+        >
+      </div>
+      <img class="imgBox" src="{{ item.Image }}" alt="image not loading" />
+      <button (click)="removeRecipe(i)" class="del">
+        Delete from Favorites
+      </button>
     </div>
   </section>
 </main>

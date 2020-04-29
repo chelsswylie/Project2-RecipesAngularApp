@@ -1,77 +1,93 @@
+/* My Favorite Recipes */
 .top {
   height: 10vh;
   width: 100%;
   text-align: center;
   color: white;
-  font-size: 25px;
+  font-size: 50px;
+  font-weight: 800;
 }
+/* Your own digital cookbook! */
 .subheader {
   color: white;
-  /* font-family: "Satisfy", cursive; */
-  font-size: 2em;
   margin: 5px;
 }
 
-/* Create three equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 25%;
-  height: 150px;
-  padding: 15px;
-  margin: 50px;
-  margin-left: 100px;
+.floatBox {
   background-color: white;
-  opacity: 0.3;
-  font-size: 15px;
+  margin-top: 3vh;
+  margin-left: 20vh;
+  margin-right: 20vh;
+  padding-top: 3vh;
+  padding-bottom: 5vh;
+  padding-left: 5vh;
+  padding-right: 5vh;
+  box-shadow: 2px 2px 4px black;
+  opacity: 0.8;
+  font-size: 25px;
   z-index: -1;
 }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
+/* Label/title of favorite recipe */
 .one {
   font-size: 25px;
   text-align: center;
   z-index: 1;
 }
 
+/* Total Calories */
 .two {
+  font-style: italic;
   font-size: 15px;
   text-align: center;
   z-index: 1;
 }
-
+/* Servings */
 .three {
-  font-size: 8px;
+  font-style: italic;
+  font-size: 15px;
   text-align: center;
   z-index: 1;
 }
-
-.textOne {
-  font-size: 20px;
-  text-align: center;
-  font-style: italic;
+/* Dietary restrictions, combined w/ health restrictions */
+.restrict {
+  color: #7a0576;
+  font-size: 24px;
 }
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
+
+/* The data that displays as a result of the dietary restrictions being called */
+.four {
+  font-size: 15px;
+  text-align: center;
+  color: black;
+}
+/* Info on the source and the url */
+.five {
+  text-align: center;
+}
+/* Styling to make URL font size smaller */
+.linky {
+  font-size: 16px;
+}
+/* Recipe image */
+.imgBox {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 40%;
+}
+/* How to remove recipe */
+button {
+  height: 60px;
+  width: 40%;
+  color: black;
+  border: solid 1px #026300;
+  margin-left: 30%;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other - only applicable once we have multiple displaying on one */
+/* @media screen and (max-width: 600px) {
   .column {
     width: 100%;
   }
-}
-button {
-  height: 30px;
-  width: 30px;
-  color: black;
-  margin-top: 70px;
-}
-p {
-  font-size: large;
-  color: black;
-}
-/* form {
-          margin-left: 100px;
-        } */
+} */
