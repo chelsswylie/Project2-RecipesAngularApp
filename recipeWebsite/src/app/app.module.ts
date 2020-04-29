@@ -9,14 +9,16 @@ import { NavComponent } from './nav/nav.component';
 import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { FavoritesPageComponent } from './favorites-page/favorites-page.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
-    path: ' ',
-    redirectTo: 'searchCriteria',
+    path: '',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -51,8 +53,11 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    MatSliderModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
