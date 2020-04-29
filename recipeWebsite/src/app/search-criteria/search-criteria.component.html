@@ -1,114 +1,49 @@
-<main>
-  <div class="pgTitle">
-    <h1>Search</h1>
-    <h4>Find Your Favorite Recipes Here</h4>
-  </div>
+import { Component, OnInit } from '@angular/core';
+import { SearchCService } from '../search-c.service';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatSliderModule } from '@angular/material/slider';
+import { from } from 'rxjs';
 
-  <!--Search Criteria, filter through json and create list in the "preview" section-->
-  <div class="floatBox">
-    <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
-      <p class="instructions">Enter your Preferences Below:</p>
+@Component({
+  selector: 'app-search-criteria',
+  templateUrl: './search-criteria.component.html',
+  styleUrls: ['./search-criteria.component.css'],
+})
+export class SearchCriteriaComponent implements OnInit {
+  slider: '';
+  hasSearchResults: false;
+  searchResults: any[];
 
-      <!--Input Drop Down-->
-      <div class="dropDown">
-        <p class="h1label">Protein</p>
-        <select name="primary" ngModel>
-          <!-- do i need to create an interface?
-          **** <option
-            *ngFor="let results of searchResults; index as i"
-            [value]="result.recipe"
-            >{{ results.recipe }}
-          </option> -->
-          <option>Chicken</option>
-          <option>Turkey</option>
-          <option> Beef</option>
-          <option>Fish</option>
-          <option>Pork</option>
-          <option>Lamb</option>
-          <option>Eggs</option>
-          <option>Pasta</option>
-          <option>None</option>
-        </select>
-      </div>
+  //range Slider//
+  formatLabel(value: number) {
+    if (value >= 1500) {
+      return Math.round(value / 1500) + 'k';
+    }
 
-      <!-- Calorie slider -->
-      <div class="calSlider">
-        <label class="h1label">Calories:</label>
-        <mat-slider
-          thumbLabel
-          name="calSlider"
-          value="0"
-          tickInterval="25"
-          min="150"
-          max="1500"
-          [(ngModel)]="slider"
-        ></mat-slider>
-      </div>
+    return value;
+  }
 
-      <!--Checkboxes -->
-      <div class="checkBoxCont">
-        <p class="label">
-          <input type="checkbox" id="searchBox" name="dairy-free" ngModel />
-          Dairy Free
-        </p>
-        <p class="label">
-          <input type="checkbox" id="searchBox" name="gluten-free" ngModel />
-          Gluten Free
-        </p>
-        <p class="label">
-          <input type="checkbox" id="searchBox" name="vegetarian" ngModel />
-          Vegetarian
-        </p>
-        <p class="label">
-          <input type="checkbox" id="searchBox" name="vegan" ngModel />
-          Vegan
-        </p>
-        <p class="label">
-          <input type="checkbox" id="searchBox" name="egg-free" ngModel />
-          Egg Free
-        </p>
-        <p class="label">
-          <input type="checkbox" id="searchBox" name="tree-nut-free" ngModel />
-          TreeNut Free
-        </p>
-        <p class="label">
-          <input type="checkbox" id="searchBox" name="peanut-free" ngModel />
-          Peanut Free
-        </p>
-      </div>
+  constructor(private searchCService: SearchCService, private route: Router) {}
 
-      <!--Search Button-->
-      <div>
-        <button>Search</button>
-      </div>
-    </form>
-  </div>
+  ngOnInit(): void {}
 
-  <!--Preview Section for Recipes-->
-  <div *ngIf="searchResults">
-    <div class="recipeCont">
-      <div class="forCont" *ngFor="let results of searchResults; index as i">
-        <div class="imaCont">
-          <img
-            class="image"
-            src="{{ results.recipe.image }}"
-            alt="image not available"
-          />
-        </div>
+  onSubmit(form?: NgForm) {
+    console.log('form', form.value);
+    this.searchCService.getSearchData(form.value).subscribe((res: any) => {
+      console.log('response data', res);
 
-        <div class="info">
-          <div class="calories">
-            Cals Per Meal: {{ results.recipe.calories }}
-          </div>
-          <div class="serving">
-            Servings Per Meal: {{ results.recipe.yield }}
-          </div>
-          <div class="dietary">Highlights: {{ results.recipe.dietLabels }}</div>
-        </div>
-        <button (click)="handleRoute(results.recipe)">
-          View More
-        </button>
-      </div>
-    </div>
-  </div>
-</main>
+      this.searchResults = res?.hits;
+    });
+  }
+
+  handleRoute(recipe) {
+    console.log('this is for recipe', recipe);
+    this.searchCService.sendSearchResults({
+      //mailman sending package
+      //service "fruit service"
+      data: recipe, //info to pass
+    });
+    this.route.navigateByUrl('/recipeList'); //send to actual page
+  }
+}
