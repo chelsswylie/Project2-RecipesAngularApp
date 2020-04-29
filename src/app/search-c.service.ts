@@ -12,6 +12,8 @@ export class SearchCService {
   apiID = 'd67f6c5f';
   apiKey = 'c506b3eaee3bfa690e8bfe3b2db09c1b';
 
+  //
+
   getSearchData(params) {
     console.log('These are params', params);
     let url = `https://api.edamam.com/search?q=${params.primary.toLowerCase()}&app_id=${
@@ -37,8 +39,3 @@ export class SearchCService {
     return this.searchResults$.asObservable(); //package is stored (as Observable creates a mailbox)
   }
 }
-
-// Object.keys(params).forEach((key) => console.log(key.valueOf()));
-// for (let key of params) {
-//   console.log('value', key);
-// }
