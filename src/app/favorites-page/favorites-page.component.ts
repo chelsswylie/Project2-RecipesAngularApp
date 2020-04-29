@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MyFavs } from '../my-favs';
 import { SearchCService } from '../search-c.service';
+
 @Component({
   selector: 'app-favorites-page',
   templateUrl: './favorites-page.component.html',
@@ -14,25 +14,32 @@ export class FavoritesPageComponent implements OnInit {
 
   // Need to figure out how to incorporate the below with a "save as favorites" button on another component
   // Routing link?
-  addRecipe = (newRecipe) => {
-    this.myFavorites.push({
-      Title: newRecipe,
-      Calories: newRecipe,
-      Dietary: newRecipe,
-      link: newRecipe,
-    });
-  };
+  // addRecipe = (newRecipe) => {
+  //   this.myFavorites.push({
+  //     Title: newRecipe,
+  //     Calories: newRecipe,
+  //     Dietary: newRecipe,
+  //     link: newRecipe,
+  //   });
+  // };
   // The below occurs within this component by using the filter function. Need to incorporate a button on favoritesP component to remove
-  removeRecipe = (item) => {
-    console.log(item);
-    this.myFavorites = this.myFavorites.filter(
-      (x, item) => this.myFavorites[item].Title !== item
-    );
-    //   //We are filtering through objects in array above. This creates a new array and will not allow through the one thing that it's looking for
+  removeRecipe = (idx) => {
+    console.log(idx);
+    this.myFavorites = this.myFavorites.filter((x, item) => idx !== item);
+    //We are filtering through objects in array above. This creates a new array and will not allow through the one thing that it's looking for
   };
   constructor(private SearchCService: SearchCService) {}
   ngOnInit() {
     this.SearchCService.getSearchResults().subscribe((res) => {
+      const {
+        data: { calories, label, healthLabels, url, ingredients },
+      } = res;
+      this.myFavorites.push({
+        Title: label,
+        Calories: calories,
+        Health: 'healthLabels',
+        Servings: res.data.yield,
+      });
       console.log('fav data', res);
     });
   }
