@@ -1,0 +1,35 @@
+main {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+h1 {
+  color: #f3f3f3;
+  text-shadow: #026300;
+  opacity: 1;
+  text-align: center;
+  font-size: xx-large;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+}
+
+img {
+  margin-top: 50px;
+  outline: 30px groove #026300;
+  outline-offset: 32px;
+  height: 200px;
+  width: 200px;
+}
+
+.url,
+.ingredients {
+  font-family: "Montserrat", sans-serif;
+}
